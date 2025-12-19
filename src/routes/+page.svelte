@@ -4,9 +4,14 @@
 
   let wasm: WasmAPI | null = null;
   let error = '';
+<<<<<<< HEAD
   let input = '';    
   let answer = '';
   let justEvaluated = false;
+=======
+  let input = '5 * 3';    
+  let answer = '';
+>>>>>>> f1ae37561c9d079745ea82f5949466d3c1629013
 
   onMount(async () => {
     try {
@@ -15,6 +20,7 @@
       error = e.message || e;
     }
   });
+<<<<<<< HEAD
   
   function compute() {
     if (!wasm || !input.trim()) return;
@@ -276,3 +282,20 @@
     }
   }
 </style>
+=======
+  function compute() {
+    if (!wasm) return;
+    answer = evaluateExpression(wasm, input);
+  }
+</script>
+<h1>Zig Calculator (WASM)</h1>
+{#if error}
+  <p style="color:red">Load error: {error}</p>
+{:else if wasm}
+  <input bind:value={input} placeholder="e.g. 5 * 3 or sin 1.2" />
+  <button on:click={compute}>=</button>
+  <p>Result: <strong>{answer}</strong></p>
+{:else}
+  <p>Loading WASM…</p>
+{/if}
+>>>>>>> f1ae37561c9d079745ea82f5949466d3c1629013
