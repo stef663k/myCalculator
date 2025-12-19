@@ -4,14 +4,9 @@
 
   let wasm: WasmAPI | null = null;
   let error = '';
-<<<<<<< HEAD
   let input = '';    
   let answer = '';
   let justEvaluated = false;
-=======
-  let input = '5 * 3';    
-  let answer = '';
->>>>>>> f1ae37561c9d079745ea82f5949466d3c1629013
 
   onMount(async () => {
     try {
@@ -20,7 +15,6 @@
       error = e.message || e;
     }
   });
-<<<<<<< HEAD
   
   function compute() {
     if (!wasm || !input.trim()) return;
@@ -109,11 +103,11 @@
         <button class="btn" on:click={() => pressDigit('1')}>1</button>
         <button class="btn" on:click={() => pressDigit('2')}>2</button>
         <button class="btn" on:click={() => pressDigit('3')}>3</button>
-        <button class="btn op" on:click={() => pressOp('-')}>−</button>
-
-        <button class="btn wide" on:click={() => pressDigit('0')}>0</button>
-        <button class="btn" on:click={pressDot}>.</button>
         <button class="btn op" on:click={() => pressOp('+')}>+</button>
+
+        <button class="btn" on:click={() => pressDigit('0')}>0</button>
+        <button class="btn empty" disabled></button>
+        <button class="btn" on:click={pressDot}>.</button>
         <button class="btn equals" on:click={compute}>=</button>
       </div>
     </div>
@@ -264,10 +258,10 @@
     background: linear-gradient(135deg, #16a34a 0%, #15803d 55%, #166534 100%);
   }
 
-  .btn.wide {
-    grid-column: span 2;
-    text-align: left;
-    padding-left: 0.9rem;
+  .btn.empty {
+    background: transparent;
+    box-shadow: none;
+    cursor: default;
   }
 
   .btn:focus-visible {
@@ -282,20 +276,3 @@
     }
   }
 </style>
-=======
-  function compute() {
-    if (!wasm) return;
-    answer = evaluateExpression(wasm, input);
-  }
-</script>
-<h1>Zig Calculator (WASM)</h1>
-{#if error}
-  <p style="color:red">Load error: {error}</p>
-{:else if wasm}
-  <input bind:value={input} placeholder="e.g. 5 * 3 or sin 1.2" />
-  <button on:click={compute}>=</button>
-  <p>Result: <strong>{answer}</strong></p>
-{:else}
-  <p>Loading WASM…</p>
-{/if}
->>>>>>> f1ae37561c9d079745ea82f5949466d3c1629013
