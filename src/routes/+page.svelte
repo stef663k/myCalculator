@@ -106,7 +106,7 @@
         <button class="btn op" on:click={() => pressOp('+')}>+</button>
 
         <button class="btn" on:click={() => pressDigit('0')}>0</button>
-        <button class="btn empty" disabled></button>
+        <button class="btn empty" disabled>Wasm</button>
         <button class="btn" on:click={pressDot}>.</button>
         <button class="btn equals" on:click={compute}>=</button>
       </div>
